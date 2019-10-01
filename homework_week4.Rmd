@@ -1,3 +1,9 @@
+---
+title: "Homework"
+author: "Jekaterina Nebogatova"
+output: github_document
+---
+
 ```{r}
 library(tidyverse)
 library(here)
@@ -5,14 +11,15 @@ hf_summary <- read_csv("output/summary.csv")
 hf_summary
 ```
 
-#Plot1. Males/females with hip fracture.
+## Plot1. Males/females with hip fracture.
+
 ```{r}
 ggplot(data = hf_summary) +
-geom_bar(aes(x = sex))
+geom_bar(aes(x = sex)) +
+  labs(caption = "According to this dataset 2.5 times more females than males got hip fractures in whole obsrvation time.")
 ```
- #Result of plot 1.: According to this dataset 2,5 times more females than males got hip fractures in whole obsrvation time.
- 
- 
+
+Result of plot 1.: According to this dataset 2,5 times more females than males got hip fractures in whole obsrvation time.
  
 #Plot2. Amount of females/males who got hf by year.
 ```{r}
@@ -21,8 +28,7 @@ geom_bar (aes(x = year, fill = sex))
 ```
 #Result of plot 2. Comparing to 2009-2016year less people got hf year 2017. Can be due to incomplete data.
 
-
-#Plot 3. Amount of females/males who got hf grouped by age. 
+#Plot 3. Amount of females/males who got hf grouped by age.
 ```{r}
 ggplot(hf_summary, aes(age, fill = sex)) +
   geom_histogram(binwidth = 10)
@@ -52,49 +58,4 @@ ggplot(hf_summary, aes(fracture_type, fill = sex)) +
 ggplot(data = hf_summary, aes(x = acute_therapy, y = post_acute_therapy, color = sex)) +
   geom_smooth(method = "lm")
 ```
-#Result of plot 6. People who spent more time getting acute terapy are more likely to spent more time getting post acute therapy. 
-
-
-
-```{r}
-ggplot(data = hf_summary, aes(x = acute_therapy, y = post_acute_therapy, color = sex)) +
-  geom_smooth(method = "lm")+
-   facet_wrap (~ fracture_type)
-```
-
-
-```{r}
-ggplot(data = hf_summary, aes(x = age, y = acute_therapy, colour = sex)) +
-  geom_point()+
-   facet_wrap (~ fracture_type)
-```
-```{r}
-ggplot(data = hf_summary, aes(x = age, y = comorbidity, colour = sex)) +
-  geom_smooth(method = "lm")+
-   facet_wrap (~ fracture_type)
-
-```
-
-
-```{r}
-ggplot(data = hf_summary, aes(x = age, y = management_method, colour = sex)) +
- geom_point(size = 0.3, alpha = 0.5, position =  position_jitter(0.1))+
-facet_wrap (~ in_hospital_mortality)
-```
-
-```{r}
-ggplot(data = hf_summary, aes(management_method, fill = sex)) +
- geom_bar()+
-facet_wrap (~ status_12m)
-```
-
-```{r}
-ggplot(data = hf_summary, aes(x = age, y = days_to_operation, colour = sex)) +
- geom_smooth(method = "lm" )
-```
-
-
-```{r}
-ggplot(data = hf_summary, aes(days_to_operation, fill = fracture_type)) +
- geom_histogram()
-```
+#Result of plot 6. People who spent more time getting acute therapy are more likely to spend more time getting post-acute therapy.
