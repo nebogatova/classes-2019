@@ -72,3 +72,5 @@ spec(summary_csv)
 summary_csv <- rename_all(summary_csv, str_replace_all, "-", "_")
 summary_csv
 write_csv(summary_csv, here("output", "summary.csv"))
+write_rds(coltypes, "output/summary.csv")
+

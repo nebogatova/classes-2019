@@ -42,6 +42,9 @@ If you get error message "there is no package called 'tidyverse'", then you need
 install.packages("tidyverse")
 library(tidyverse)
 ```
+```{r}
+install.packages("broom")
+```
 
 ## Data to visualise
 
@@ -111,14 +114,15 @@ mpg
 
 4. Make scatterplot of *hwy* vs *cyl* using mpg data:
 ```{r}
+set.seed(112)
 ggplot(data = mpg) +
-  geom_point(mapping = aes(x = cyl, y = hwy))
+  geom_point(mapping = aes(x = cyl, y = hwy), position = position_jitter(0.1))
 ```
 
 What happens if you add some noise to points? Hint: use geom_jitter instead
 ```{r}
 ggplot(data = mpg) +
-  geom_jitter(mapping = aes(x = hwy, y = cyl))
+  geom_jitter(mapping = aes(x = cyl, y = hwy), width = 0.1)
 ```
 
 5. What happens when you make a scatterplot of *class* versus *drv* using mpg data:
@@ -208,6 +212,23 @@ Make height~mass scatterplot and map one continuous variable to size:
 ```{r}
 ggplot(data = starwars) +
   geom_point(mapping = aes(x = height, y = mass, size = birth_year))
+```
+1. use log function
+```{r}
+ggplot(data = starwars) +
+  geom_point(mapping = aes(x = height, y = log(mass), size = birth_year))
+```
+
+```{r}
+ggplot(data = starwars) +
+  geom_point(mapping = aes(x = height, y = log10(mass), size = birth_year))
+```
+
+2. convert y-axit to log scale
+```{r}
+ggplot(data = starwars) +
+  geom_point(mapping = aes(x = height, y = log10(mass), size = birth_year))
+scale_y_log10()
 ```
 
 
