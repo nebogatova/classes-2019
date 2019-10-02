@@ -47,3 +47,16 @@ ggplot(data = hf_summary) +
 
 #' Number of fracture types in hf_summary dataset
 ggplot(data = hf_summary) +
+  geom_bar(aes(x = fracture_type, y = ..prop.., group = 1))
+
+#
+ggplot(data = hf_summary) +
+  geom_bar(aes(x = fracture_type, y = ..prop.., fill = sex, group = sex))
+
+#
+ggplot(data = hf_summary) +
+  geom_bar(aes(x = fracture_type, fill = sex), position = "dodge")
+
+#
+ggplot(data = hf_summary) +
+  geom_bar(aes(x = fracture_type, fill = sex), position = position_dodge(width = 0.5))
